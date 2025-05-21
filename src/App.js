@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Balance from './components/Balance';
 import IncomeExpense from './components/IncomeExpense';
@@ -8,7 +8,10 @@ import './App.css';
 
 function App() {
   const [transactions, setTransactions] = useState([]);
-
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark' : 'light';
+  }, [darkMode]);
   const amounts = transactions.map(t => t.amount);
   const total = amounts.reduce((acc, item) => acc + item, 0).toFixed(2);
   const income = amounts
@@ -25,7 +28,7 @@ function App() {
 
   return (
     <div className='container'>
-      <Header/>
+      <Header toggleTheme={() => setDarkMode(!darkMode)}/>
       <Balance total={total} />
       <IncomeExpense income={income} expense={expense} />
       <TransactionList transactions={transactions}/>
