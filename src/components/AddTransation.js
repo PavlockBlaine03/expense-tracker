@@ -32,7 +32,7 @@ function AddTransaction({onAdd}) {
                     />
                 </div>
                 <div>
-                    <label>Amount<br />(+ income, -expense)</label>
+                    <label>Amount<br />(+ income, - expense)</label>
                     <input type="number" value={amount} 
                         onChange={(e) => setAmount(e.target.value)}
                         placeholder="Enter amount..."
